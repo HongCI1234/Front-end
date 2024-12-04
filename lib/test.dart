@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'check1.dart';
+import 'checklist/check1.dart';
 
 class TestScreen extends StatelessWidget {
   @override

@@ -52,9 +52,11 @@ class CheckScreen2 extends StatelessWidget {
       {required String label, required int score, required int previousScore}) {
     return ElevatedButton(
       onPressed: () {
-        // 다음 화면으로 이동 로직 구현 가능
+        // 총점 계산
         final int totalScore = previousScore + score;
-        // 총점(totalScore)을 전달할 수 있음
+
+        // 다음 화면으로 이동
+        Navigator.pushNamed(context, '/check3', arguments: totalScore);
       },
       child: Text(label),
       style: ElevatedButton.styleFrom(

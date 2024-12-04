@@ -3,8 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'report.dart';
 import 'chatbot.dart';
 import 'test.dart'; // 추가된 test.dart import
-import 'check1.dart';
-import 'check2.dart';
+import 'checklist/check1.dart';
+import 'checklist/check2.dart';
+import 'checklist/check3.dart';
+import 'checklist/check4.dart';
+import 'checklist/check5.dart';
+import 'checklist/check6.dart';
+import 'checklist/check7.dart';
+import 'checklist/check8.dart';
+import 'checklist/check9.dart';
+import 'checklist/check10.dart';
+import 'checklist/check11.dart';
+import 'checklist/check12.dart';
+import 'checklist/check13.dart';
+import 'checklist/check14.dart';
+import 'checklist/check15.dart';
+import 'checklist/check16.dart'; // 최종 결과 화면 import
 
 void main() {
   runApp(const MindGuardApp());
@@ -18,10 +32,23 @@ class MindGuardApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
-      initialRoute: '/check1',
       routes: {
         '/check1': (context) => CheckScreen1(),
         '/check2': (context) => CheckScreen2(),
+        '/check3': (context) => CheckScreen3(),
+        '/check4': (context) => CheckScreen4(),
+        '/check5': (context) => CheckScreen5(),
+        '/check6': (context) => CheckScreen6(),
+        '/check7': (context) => CheckScreen7(),
+        '/check8': (context) => CheckScreen8(),
+        '/check9': (context) => CheckScreen9(),
+        '/check10': (context) => CheckScreen10(),
+        '/check11': (context) => CheckScreen11(),
+        '/check12': (context) => CheckScreen12(),
+        '/check13': (context) => CheckScreen13(),
+        '/check14': (context) => CheckScreen14(),
+        '/check15': (context) => CheckScreen15(),
+        '/check16': (context) => CheckScreen16(),
       },
     );
   }
@@ -58,13 +85,13 @@ class HomeScreen extends StatelessWidget {
             Text(
               '자가진단',
               style:
-              GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             _buildButton(
               context,
               icon: Icons.watch,
-              label: '웨어러블 기기 연동',
+              label: '라이프로그 리포트',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -88,7 +115,7 @@ class HomeScreen extends StatelessWidget {
             Text(
               '챗봇',
               style:
-              GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             _buildButton(
@@ -119,8 +146,8 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildButton(BuildContext context,
       {required IconData icon,
-        required String label,
-        required VoidCallback onPressed}) {
+      required String label,
+      required VoidCallback onPressed}) {
     return ElevatedButton.icon(
       onPressed: onPressed,
       icon: Icon(icon, size: 24),

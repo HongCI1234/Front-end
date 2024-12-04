@@ -42,7 +42,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chatbot')),
+      appBar: AppBar(title: Text('마가톡')),
       body: Column(
         children: [
           Expanded(
@@ -53,7 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 final isUser = message['role'] == 'user';
                 return Align(
                   alignment:
-                  isUser ? Alignment.centerRight : Alignment.centerLeft,
+                      isUser ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: EdgeInsets.all(10),
