@@ -23,7 +23,7 @@ class ReportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('웨어러블 기기 연동'),
+        title: const Text('라이프로그 리포트'),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
@@ -41,16 +41,17 @@ class ReportScreen extends StatelessWidget {
             const ScoreCards(),
             const MovementBarChart(),
             const CalorieCard(),
+            const Inji(),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+      //   ],
+      // ),
     );
   }
 }
@@ -106,7 +107,7 @@ class ScoreCards extends StatelessWidget {
                 Text('수면질 점수', style: TextStyle(fontSize: 16)),
                 Text('50점',
                     style:
-                    TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
@@ -119,7 +120,7 @@ class ScoreCards extends StatelessWidget {
                 Text('신체활동 점수', style: TextStyle(fontSize: 16)),
                 Text('73점',
                     style:
-                    TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
@@ -206,6 +207,27 @@ class CalorieCard extends StatelessWidget {
             Text('금일 사용 칼로리', style: TextStyle(fontSize: 16)),
             Icon(Icons.local_fire_department, color: Colors.orange),
             Text('1307 Kcal',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Inji extends StatelessWidget {
+  const Inji({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('인지 기능 점수', style: TextStyle(fontSize: 16)),
+            Text('68점',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           ],
         ),
