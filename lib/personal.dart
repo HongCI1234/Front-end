@@ -38,13 +38,13 @@ class PersonalInfoPage extends StatelessWidget {
 
             // 이름, 성별, 생년월일
             Text(
-              '홍길동', // 임시 이름
+              '김숙명', // 임시 이름
               style:
                   GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              '성별: 남성', // 임시 성별
+              '성별: 여성', // 임시 성별
               style: GoogleFonts.lato(fontSize: 18),
             ),
             const SizedBox(height: 8),
