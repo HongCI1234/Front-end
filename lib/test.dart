@@ -13,7 +13,7 @@ class TestScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          '인지 능력 테스트',
+          '인지 건강 테스트',
           style: TextStyle(color: Colors.blue),
         ),
       ),
@@ -33,7 +33,7 @@ class TestScreen extends StatelessWidget {
             const SizedBox(height: 16),
             _buildButton(
               context,
-              label: '자가진단 체크리스트',
+              label: '치매 자가진단 체크리스트',
               onPressed: () {
                 Navigator.push(
                   context,
@@ -76,6 +76,13 @@ class TestScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+        ],
       ),
     );
   }
