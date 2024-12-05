@@ -63,8 +63,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0; // BottomNavigationBar의 현재 인덱스
   final List<Widget> _pages = [
-    HomePage(), // 홈 화면
+    //HomePage(), // 홈 화면
+    //ReportScreen(), // 리포트 화면
+    //PersonalInfoPage(), // 프로필 화면
     ReportScreen(), // 리포트 화면
+    HomePage(), // 홈 화면
     PersonalInfoPage(), // 프로필 화면
   ];
 
@@ -99,8 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          //BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          //BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
+          //BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
         selectedItemColor: Colors.blue,
@@ -138,7 +144,7 @@ class HomePage extends StatelessWidget {
           _buildButton(
             context,
             icon: Icons.category,
-            label: '인지 능력 테스트',
+            label: '인지 건강 테스트',
             onPressed: () {
               Navigator.push(
                 context,
