@@ -1,33 +1,59 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dart_openai/dart_openai.dart';
 
 class OpenAIService {
   final String apiKey =
-      'sk-P5tRBlfKWpT5UGhAIlKK_2FH454y8xPzFtBMKKSmTwT3BlbkFJQ7YlrYFHykEin8dpch_TO_I_CNd-aXbW0MvF-h2oAA';
+      'api_key'; // OpenAI API 키 직접 입력
 
-  Future<String> sendMessage(String message) async {
-    const apiUrl = 'https://api.openai.com/v1/chat/completions';
+  Future<String> createModel(String sendMessage) async {
+    // OpenAI API 키 설정
+    OpenAI.apiKey = apiKey;
 
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $apiKey',
-      },
-      body: jsonEncode({
-        'model': 'gpt-4', // 사용할 모델
-        'messages': [
-          {'role': 'user', 'content': message},
-        ],
-        'max_tokens': 150,
-      }),
+    // API 요청 타임아웃 설정
+    OpenAI.requestsTimeOut = const Duration(seconds: 60);
+
+    // 시스템 메시지 정의 (컨텍스트 설정)
+    final systemMessage = OpenAIChatCompletionChoiceMessageModel(
+      content: [
+        OpenAIChatCompletionChoiceMessageContentItemModel.text(
+          "You're a psychological consultant.",
+        ),
+      ],
+      role: OpenAIChatMessageRole.system,
     );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return data['choices'][0]['message']['content'];
-    } else {
-      throw Exception('Failed to fetch response from OpenAI');
+    // 사용자 메시지 정의
+    final userMessage = OpenAIChatCompletionChoiceMessageModel(
+      content: [
+        OpenAIChatCompletionChoiceMessageContentItemModel.text(
+          sendMessage,
+        ),
+      ],
+      role: OpenAIChatMessageRole.user,
+    );
+
+    // 요청 메시지 리스트 생성
+    final requestMessages = [
+      systemMessage,
+      userMessage,
+    ];
+
+    try {
+      // OpenAI API 요청
+      OpenAIChatCompletionModel chatCompletion =
+          await OpenAI.instance.chat.create(
+        model: 'gpt-3.5-turbo',
+        messages: requestMessages,
+        maxTokens: 250,
+      );
+
+      // 응답 메시지 추출 및 반환
+      String message =
+          chatCompletion.choices.first.message.content![0].text.toString();
+      return message;
+    } catch (e) {
+      // 예외 발생 시 오류 메시지 반환
+      print("Error occurred: $e");
+      return "Failed to get a response from OpenAI.";
     }
   }
 }
