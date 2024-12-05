@@ -55,7 +55,19 @@ class MindGuardApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0; // BottomNavigationBar의 현재 인덱스
+  final List<Widget> _pages = [
+    HomePage(), // 홈 화면
+    ReportScreen(), // 리포트 화면
+    PersonalInfoPage(), // 프로필 화면
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,81 +90,80 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '자가진단',
-              style:
-                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _buildButton(
-              context,
-              icon: Icons.watch,
-              label: '라이프로그 리포트',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReportScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildButton(
-              context,
-              icon: Icons.category,
-              label: '인지 능력 테스트',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TestScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 32),
-            Text(
-              '챗봇',
-              style:
-                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _buildButton(
-              context,
-              icon: Icons.chat,
-              label: '마가톡과 대화하기',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChatScreen()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // 클릭 시 PersonalInfoPage로 이동
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PersonalInfoPage()),
-          );
-        },
-        child: const Icon(Icons.person),
-        backgroundColor: Colors.blue,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // 우측 하단에 위치하도록 설정
+      body: _pages[_currentIndex], // 현재 선택된 페이지 표시
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex, // 현재 선택된 인덱스
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index; // 선택된 인덱스로 변경
+          });
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '자가진단',
+            style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          _buildButton(
+            context,
+            icon: Icons.watch,
+            label: '라이프로그 리포트',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ReportScreen()),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
+          _buildButton(
+            context,
+            icon: Icons.category,
+            label: '인지 능력 테스트',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TestScreen()),
+              );
+            },
+          ),
+          const SizedBox(height: 32),
+          Text(
+            '챗봇',
+            style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          _buildButton(
+            context,
+            icon: Icons.chat,
+            label: '마가톡과 대화하기',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatScreen()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
