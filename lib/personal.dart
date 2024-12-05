@@ -39,7 +39,8 @@ class PersonalInfoPage extends StatelessWidget {
             // 이름, 성별, 생년월일
             Text(
               '홍길동', // 임시 이름
-              style: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
@@ -56,7 +57,8 @@ class PersonalInfoPage extends StatelessWidget {
             // 데이터프레임 예시
             Text(
               '2024년 11월 데이터',
-              style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             // DataTable 예시
